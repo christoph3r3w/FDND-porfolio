@@ -3,17 +3,9 @@
 	// import gsap from "gsap";
 	// import LocomotiveScroll from 'locomotive-scroll';
 	// import '../styles/main.css';
-	export let data;
-	let people = data.people
-	export let peep = people? people.find(person => person.id == 40) : 'not found';
-
-	console.log(peep);
-	
-
-	// console.log('lol',Peep);
-	
-	
-	
+	let data = $props();
+	let {people} = data;
+	let peep = people? people.find(person => person.id == 40) : 'not found';
 
 	// const locomotiveScroll = new LocomotiveScroll();
 </script>
@@ -406,7 +398,6 @@ main {
 		transition: 1s ease-in-out;
 		z-index: 4;
 		mix-blend-mode:darken;
-
 }
 
 .side-info{
