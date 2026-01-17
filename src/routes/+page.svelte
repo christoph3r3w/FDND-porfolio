@@ -1,19 +1,17 @@
-<script>
+<script lang="ts">
 	/** @type {import('./$types').PageData} */
 	// import gsap from "gsap";
 	// import LocomotiveScroll from 'locomotive-scroll';
 	// import '../styles/main.css';
-	let data = $props();
-	let {people} = data;
-	let peep = people? people.find(person => person.id == 40) : 'not found';
-
 	// const locomotiveScroll = new LocomotiveScroll();
+	let data : any = $props();
+	let {peep} =  data.data || [];
 </script>
 
 <svelte:head>
-	<title>welcome to your-tribe-for-life-profile-card</title>
+	<title>Profile card</title>
 	<link rel="preload" href="https://brilletjes-squad-page.onrender.com" as="document">
-	<link rel="preload" href="https://book-of-potions.onrender.com" as="document">
+	<link rel="preload" href="https://proof-of-concept-for-merlin.vercel.app/brew" as="document">
 </svelte:head>
 
 <main>
@@ -44,7 +42,7 @@
 				</ul>
 			</div>
 			<div class="bio">
-				{#if peep }
+				{#if peep}
 				<p> {peep.bio}</p>
 				{:else}
 				<p>
@@ -65,7 +63,7 @@
 		
 			<section class="mainG">
 				<article class="top top_1">
-					<iframe src="https://book-of-potions.onrender.com/brew" frameborder="0" tabindex="-1"></iframe>
+					<iframe title="potion mixing game" src="https://proof-of-concept-for-merlin.vercel.app/brew" frameborder="0" tabindex="-1"></iframe>
 				</article>  
 				<article class="top top_2">2</article>
 				<article class="top top_3">3</article>
@@ -75,8 +73,6 @@
 					<a href="#cover-5" class="frame stamp" style="color: transparent;">
 						next
 					</a>
-
-					
 				</article>
 				<article class="mid mid_3">6</article>
 					
@@ -86,14 +82,14 @@
 					</a>
 				</article>  
 				<article class="down down_2">
-					<iframe height="300" style="width: 100%;" scrolling="no" title="Untitled" src="https://codepen.io/Christopher-the-animator/embed/NWmxrpY?default-tab=" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true" tabindex="-1">
+					<iframe title="shader" height="300" style="width: 100%;" scrolling="no" src="https://codepen.io/Christopher-the-animator/embed/NWmxrpY?default-tab=" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true" tabindex="-1">
 						See the Pen <a href="https://codepen.io/Christopher-the-animator/pen/NWmxrpY">
 						Untitled</a> by Christopher (<a href="https://codepen.io/Christopher-the-animator">@Christopher-the-animator</a>)
 						
 					  </iframe>				
 				</article>
 				<article class="down down_3">
-					<iframe src="https://brilletjes-squad-page.onrender.com" tabindex="-1"></iframe>
+					<iframe title="brilletjes squad page" src="https://brilletjes-squad-page.onrender.com" tabindex="-1"></iframe>
 				</article>
 			</section> 
 		
@@ -228,12 +224,12 @@ main {
 	/* place-content: center ; */
 	/* color: transparent; */
 
-	&:is(:visited,:focus,:active){
+	&:is(:global(:visited,:focus,:active)){
 		color: unset;
 	}
 }
 
-.covers:has(:active,:focus-within){
+.covers:has(:global(:active,:focus-within)){
 	transform: scale(.6) translateX(13vw);
 	transition: .5s ease-in-out;
 	
@@ -244,11 +240,11 @@ main {
 
 }
 
-/* li:is(:visited,:focus,:active){
+/* li:is(:global(:visited,:focus,:active)){
 	transition: 2s;
 } */
 
-/* li:has(:not(.frame:active)){
+/* li:has(:global(:not(.frame:active))){
 	transform: translateX(0) scale(1);
 	transition: .2s ease-in-out;
 
@@ -341,7 +337,7 @@ main {
 	transition: 1.5s;
 }
 
-#cover-1:has(.frame:active,.frame:focus-within) :is(.profile-2){
+#cover-1:has(:global(.frame:active,.frame:focus-within)) :is(:global(.profile-2)){
 
 	--inner-size: 30vw;
 	&img{
@@ -366,16 +362,11 @@ main {
 	height: min-content;
 	grid-row: 2;
 	grid-column: 1/ -1;
-	/* outline: solid #d25565; */
-	/* background-color: #e97f02; */
-	/* display: none; */
 	z-index: 2;
 	font-size:clamp(1rem, -10rem + 56vw, 14rem);
 	font-weight: normal;
 	pointer-events: none;
 	mix-blend-mode: multiply;
-	/* margin-block: 0;
-	padding-bottom: 10%; */
 }
 
 
@@ -390,9 +381,8 @@ main {
 
 }
 
-#cover-2:is(:active,:focus-within) img{
+#cover-2:is(:global(:active,:focus-within)) img{
 		opacity: 1;
-		/* width: 50%; */
 		right: -10%;
 		top: -20%;
 		transition: 1s ease-in-out;
@@ -403,8 +393,6 @@ main {
 .side-info{
 	grid-column: 1/2;
 	grid-row: 3/-1;
-	/* outline: solid black; */
-	/* font-size: clamp(1rem, -14rem + 18vw, 17rem); */
 	place-self: center;
 	margin: 5%;
 }
@@ -420,7 +408,6 @@ main {
 .bio{
 	grid-column: 2/-1;
 	grid-row: 2/-1;
-	/* outline: solid black; */
 	padding: 3%;
 	overflow: hidden;
 	/* font-size: clamp(1rem, -12rem + 16vw, 9rem); */
@@ -473,7 +460,6 @@ main {
 #cover-3.frame{
 	position:relative;
 	display:grid;
-  	/* background-color:black; */
   	width: 100%;
   	height:100%;
   	grid-template-columns:
@@ -496,7 +482,6 @@ main {
     1fr
     [side-end];
   
-	/* outline:solid white; */
 	transition:1s;
 	color:rgb(0, 0, 0);
 	perspective: 3000px;
@@ -504,7 +489,7 @@ main {
   	height:100%;
   	gap:1rem;
   
-	/*   &:has(:hover) section{
+	/*   &:has(:global(:hover)) section{
     transform: rotateY(-25deg) rotateX(65deg)           scale(.6);
   } */
 
@@ -558,7 +543,7 @@ main {
 }
 
 /* iframe styling */
-.mainG article:is(.mid_3,.top_2,.top_3){
+.mainG article:is(:global(.mid_3,.top_2,.top_3)){
 	display: none;
 }
 
@@ -592,8 +577,6 @@ main {
 
 .mainG article.mid_2{
 	outline: none;
-	/* background-color: #000; */
-	/* display: none; */
 }
 
 .mainG article.down_2{
@@ -603,7 +586,6 @@ main {
 
 .mainG article.down_2 iframe{
 	border-radius: var(--radius);
-	/* outline: none; */
 	width: auto;
 	height: 100%;
 }
@@ -640,21 +622,21 @@ main {
 }
 
 /* grid controls */
- #cover-3:has(.top:hover,:focus-within){
+ #cover-3:has(:global(.top:hover,:focus-within)){
       
-  	&:has(.top_1:hover,:focus){
+  	&:has(:global(.top_1:hover,:focus)){
        grid-template-columns:5fr 1fr 3fr;
        grid-template-rows:5fr 1fr 1fr;
 	   &::after{
 			content: 'Merlin';
 		}
      }
-   	&:has(.top_2:hover){
+   	&:has(:global(.top_2:hover)){
 		background-color: #000;
        grid-template-columns: 1fr 2.5fr 1fr;
         grid-template-rows:2.5fr 1fr 1fr;
      }
-   	&:has(.top_3:hover){
+   	&:has(:global(.top_3:hover)){
        background-color:#EDA48D;
        grid-template-columns: 1fr  1fr 2.5fr;
        grid-template-rows:2.5fr 1fr 1fr;
@@ -662,14 +644,14 @@ main {
     
 }
    
-#cover-3:has(.mid:hover,:focus-within){
-    	&:has(.mid_1:hover){
+#cover-3:has(:global(.mid:hover,:focus-within)){
+    	&:has(:global(.mid_1:hover)){
        		grid-template-columns:2.5fr 1fr 1fr;
        		grid-template-rows: 1fr 2.5fr 1fr;
 
 		
      	}
-   		&:has(.mid_2:hover){
+   		&:has(:global(.mid_2:hover)){
        		background-color:rgba(0, 0, 255, 0.411);
        		grid-template-columns: 1fr 1fr 1fr;
        		grid-template-rows: 1fr 1fr 1fr;
@@ -684,14 +666,14 @@ main {
 			}
      
      }
-   		&:has(.mid_3:hover){
+   		&:has(:global(.mid_3:hover)){
        	grid-template-columns: 1fr  1fr 2.5fr;
        	grid-template-rows: 1fr 2.5fr 1fr;
      }
 }
 
-#cover-3:has(.down:hover,:focus-within){
-      	&:has(.down_1:hover){
+#cover-3:has(:global(.down:hover,:focus-within)){
+      	&:has(:global(.down_1:hover)){
 			/* background-color: #0d111774; */
        		grid-template-columns:1fr 1fr 1fr;
        		grid-template-rows: 1fr 1fr 2fr;
@@ -699,7 +681,7 @@ main {
 					content: 'school work';
 				}
      }
-   		&:has(.down_2:hover,:focus-within,:active){
+   		&:has(:global(.down_2:hover,:focus-within,:active)){
        		/* background-color:blue; */
        		grid-template-columns: 1fr 2.5fr 1fr;
         	grid-template-rows: 1fr  1fr 8fr;
@@ -707,7 +689,7 @@ main {
 				content: 'Shaders';
 			}
      }
-   		&:has(.down_3:hover,:focus-within){
+   		&:has(:global(.down_3:hover,:focus-within)){
 			background-color:#EDA48D;
        		grid-template-columns: 1fr  1fr 2.5fr;
         	grid-template-rows: 1fr  1fr 2.5fr;
@@ -719,7 +701,7 @@ main {
 }
   
 
-#cover-3:has(article:nth-of-type(n):hover){
+#cover-3:has(:global(article:nth-of-type(n):hover)){
    
 	&article:nth-of-type(n):hover{
 	background-color:lightyellow;
@@ -790,7 +772,7 @@ main {
 	overflow-wrap: break-word;
 }
 
-#cover-5 div:has(p){
+#cover-5 div:has(:global(p)){
 	/* mix-blend-mode:multiply; */
 	/* font-size:clamp(5rem,19vw,10rem); */
 	/* outline: solid red; */
